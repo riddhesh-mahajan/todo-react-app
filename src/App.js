@@ -26,18 +26,25 @@ function App() {
 
     setTodos(prevTodos=>{
       console.log(prevTodos)
-      return [...prevTodos, {'name': name}]
+      return [...prevTodos, {'id': prevTodos.length, 'name': name, 'completed': false}]
     })
     
     todoNameRef.current.value = ''
   }
 
+  function toggleTodo(id){
+    const newTodos = [...todos]
+    const todo = newTodos.find(todo=> todo.id == id)
+    todo.completed = !todo.completed
+    setTodos(newTodos)
+  }
+
   return (
     <>
-    <TodoList todos={todos}/>
+    <TodoList todos={todos} toggleTodo={toggleTodo}/>
     <input ref={todoNameRef} type="text" />
     <button onClick={addTodo}>Add Todo</button>
-    <p>0 left todos</p>
+    <p>{todos.filter(todo=> !todo.completed).length} left todos</p>
     </>
   )
 }
