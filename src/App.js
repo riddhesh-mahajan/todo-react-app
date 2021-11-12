@@ -27,7 +27,7 @@ function App() {
 
     setTodos(prevTodos=>{
       console.log(prevTodos)
-      return [...prevTodos, {'id': prevTodos.length, 'name': name, 'completed': false}]
+      return [{'id': prevTodos.length, 'name': name, 'completed': false}, ...prevTodos]
     })
     
     todoNameRef.current.value = ''
