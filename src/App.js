@@ -2,6 +2,7 @@ import {useState, useRef, useEffect} from 'react'
 import logo from './logo.svg';
 import './App.css';
 import TodoList from './TodoList';
+import Navbar from './Navbar';
 
 const LOCAL_STORAGE_KEY = 'todoapp.todos'
 
@@ -41,10 +42,15 @@ function App() {
 
   return (
     <>
-    <TodoList todos={todos} toggleTodo={toggleTodo}/>
-    <input ref={todoNameRef} type="text" />
-    <button onClick={addTodo}>Add Todo</button>
-    <p>{todos.filter(todo=> !todo.completed).length} left todos</p>
+    <Navbar/>
+
+    <div className="container mt-4">
+        <input ref={todoNameRef} placeholder="Todo name" type="text" className="form-control mb-2" />
+        <button onClick={addTodo} className="btn btn-primary">Add Todo</button>
+        <p>{todos.filter(todo=> !todo.completed).length} left todos</p>
+
+        <TodoList todos={todos} toggleTodo={toggleTodo}/>
+    </div>
     </>
   )
 }
